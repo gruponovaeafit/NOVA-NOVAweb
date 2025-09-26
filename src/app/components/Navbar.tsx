@@ -1,13 +1,24 @@
-// components/Navbar.tsx
+"use client"; // this component needs to run in the browser
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
+  const links = [
+    { href: "/nosotros", label: "Nosotros" },
+    { href: "/proyectos", label: "Proyectos" },
+    { href: "/grupo", label: "Grupo" },
+    { href: "/eventos", label: "Eventos" },
+  ];
+
   return (
     <nav className="bg-purple-700 text-white relative">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16 relative">
           
-          {/* Izquierda: Logo como Home link */}
+          {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
               <img
@@ -18,23 +29,24 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Centro: Menú de navegación (absolute centering) */}
+          {/* Center menu */}
           <div className="absolute left-1/2 transform -translate-x-1/2 flex space-x-8 text-sm font-semibold">
-            <Link href="/nosotros" className="hover:text-gray-200">
-              Nosotros
-            </Link>
-            <Link href="/proyectos" className="hover:text-gray-200">
-              Proyectos
-            </Link>
-            <Link href="/grupo" className="hover:text-gray-200">
-              Grupo
-            </Link>
-            <Link href="/eventos" className="hover:text-gray-200">
-              Eventos
-            </Link>
+            {links.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`pb-1 border-b-2 ${isActive ? "border-white text-white" : "border-transparent hover:border-gray-200 hover:text-gray-200"
+                    }`}
+                >
+                  {link.label}
+                </Link>
+
+              );
+            })}
           </div>
 
-          {/* Derecha: espacio vacío para balancear */}
           <div className="w-12" />
         </div>
       </div>
