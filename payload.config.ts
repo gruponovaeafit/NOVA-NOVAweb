@@ -8,10 +8,11 @@ export default buildConfig({
   editor: lexicalEditor(),
   // Define and configure your collections in this array
   collections: [Posts],
+  
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || "",
-  // Whichever Database Adapter you're using should go here
-  // Mongoose is shown as an example, but you can also use Postgres
+
+  // Database adapter -> posgresAdapter
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || "",
