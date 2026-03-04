@@ -2,6 +2,17 @@
 
 A modern web application built with Next.js, featuring user authentication, dashboard, and Payload CMS integration.
 
+
+## Environment Setup
+
+Create a `.env.local` file based on `.env.example`:
+
+```bash
+cp .env.example .env.local
+```
+
+Then fill in the required environment variables in `.env.local`. The `.env.example` file contains all required configuration keys with placeholder values for reference. Never commit `.env.local` with actual secrets - use `.env.example` for configuration documentation.
+
 ## Quick Start
 
 ```bash
