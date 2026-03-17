@@ -10,12 +10,16 @@ export default buildConfig({
   collections: [Posts],
   
   // Your Payload secret - should be a complex and secure string, unguessable
-  secret: process.env.PAYLOAD_SECRET || "",
+  secret: process.env.PAYLOAD_SECRET || (() => {
+    throw new Error("PAYLOAD_SECRET is not defined in environment variables");
+  })(),
 
-  // Database adapter -> posgresAdapter
+  // Database adapter -> postgresAdapter
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || "",
+      connectionString: process.env.DATABASE_URI || (() => {
+        throw new Error("DATABASE_URI is not defined in environment variables");
+      })(),
     },
   }),
   // If you want to resize images, crop, set focal point, etc.

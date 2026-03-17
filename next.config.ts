@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
   },
   
   // This is needed to make sure the correct file extensions are resolved when Payload is imported in Next.js
-  webpack: (webpackConfig) => {
+  webpack: (webpackConfig: any) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],
       '.js': ['.ts', '.tsx', '.js', '.jsx'],
