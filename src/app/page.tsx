@@ -55,10 +55,10 @@ function ImageCarousel() {
         </button>
 
         <div className="nova-carousel__track">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className="nova-carousel__slot">
-              <img
-                src={`/imagen-ejemplo-${i}.jpg`}
+          {["OMEGA-aula_2.jpeg", "OMEGA-aula.jpeg", "OMEGA-trabajo.jpeg"].map((img, i) => (
+        <div key={i} className="nova-carousel__slot">
+        <img
+                src={`/${img}`}
                 alt={`Imagen carrusel ${i}`}
                 className="nova-carousel__img"
               />
@@ -127,19 +127,11 @@ function MisionVision() {
 // Tres tarjetas de convocatoria, cada una con imagen placeholder,
 // título, subtítulo y botones de acción.
 // ---------------------------------------------------------------------------
+// DESPUÉS
 const CARDS = [
-  {
-    title: "¡Participa en Nova!",
-    subtitle: "Nuestro hito de tecnología e innovación está aquí.",
-  },
-  {
-    title: "¡Participa en Nova!",
-    subtitle: "Nuestro hito de tecnología e innovación está aquí.",
-  },
-  {
-    title: "¡Participa en Nova!",
-    subtitle: "Nuestro hito de tecnología e innovación está aquí.",
-  },
+  { img: "pacho-morado.jpeg",  title: "¡Participa en Nova!", subtitle: "Nuestro hito..." },
+  { img: "pose-pacho.jpeg",    title: "¡Participa en Nova!", subtitle: "Nuestro hito..." },
+  { img: "selfie-pacho.jpeg",  title: "¡Participa en Nova!", subtitle: "Nuestro hito..." },
 ];
 
 function Cards() {
@@ -152,17 +144,7 @@ function Cards() {
           <div key={i} className="nova-card">
             {/* Reemplazar el área de imagen con: background: url('/tu-imagen.jpg') center/cover */}
             <div className="nova-card__img">
-              <svg
-                viewBox="0 0 48 36"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={1.5}
-                className="nova-card__img-icon"
-              >
-                <rect x="1" y="1" width="46" height="34" rx="2" />
-                <circle cx="13" cy="13" r="4" />
-                <polyline points="1 28 14 16 22 24 30 14 47 28" />
-              </svg>
+              <img src={`/${card.img}`} alt={card.title} style={{width:"100%", height:"100%", objectFit:"cover"}} />
             </div>
 
             <div className="nova-card__body">
