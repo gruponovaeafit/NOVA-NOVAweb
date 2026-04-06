@@ -4,6 +4,7 @@ import styles from "./Footer.module.css";
 export default function Footer() {
   return (
     <footer className={styles.footer}>
+      {/* Columnas principales: FAQ y Contacto */}
       <div className={styles.container}>
         {/* Preguntas frecuentes */}
         <nav className={styles.col} aria-labelledby="faq-heading">
@@ -27,11 +28,13 @@ export default function Footer() {
             <a href="tel:+571234567890">+57 123 4567890</a>
           </address>
         </div>
+      </div>
 
-        {/* Redes sociales */}
-        <div className={styles.col} aria-labelledby="social-heading">
-          <h2 id="social-heading" className={styles.title}>Síguenos</h2>
-          <ul className={styles.social}>
+      {/* Fila inferior: línea separadora acortada + iconos sociales a la derecha */}
+      <div className={styles.bottomRow}>
+        <hr className={styles.divider} />
+        <div className={styles.socialWrapper}>
+          <ul className={styles.social} aria-label="Redes sociales">
             <li>
               <a href="https://x.com" aria-label="X (Twitter)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
