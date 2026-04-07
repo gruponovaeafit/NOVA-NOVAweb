@@ -2,7 +2,6 @@ import sharp from "sharp";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { buildConfig } from "payload";
-import { Posts } from "./src/app/collections/Posts"; // or ./app/collections/Posts if you are not using `src` folder
 import { Eventos } from "./src/app/collections/Eventos";
 import { Proyectos } from "./src/app/collections/Proyectos";
 
@@ -14,7 +13,7 @@ export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
   // Define and configure your collections in this array
-  collections: [Posts, Eventos, Proyectos],
+  collections: [Eventos, Proyectos],
   // Define and configure your globals in this array
   globals: [Home, Nosotros],
   
