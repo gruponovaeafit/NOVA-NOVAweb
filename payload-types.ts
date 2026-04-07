@@ -68,6 +68,8 @@ export interface Config {
   blocks: {};
   collections: {
     posts: Post;
+    eventos: Evento;
+    proyectos: Proyecto;
     'payload-kv': PayloadKv;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
@@ -77,6 +79,8 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     posts: PostsSelect<false> | PostsSelect<true>;
+    eventos: EventosSelect<false> | EventosSelect<true>;
+    proyectos: ProyectosSelect<false> | ProyectosSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -89,12 +93,10 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     home: Home;
-    eventos: Evento;
     nosotros: Nosotro;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
-    eventos: EventosSelect<false> | EventosSelect<true>;
     nosotros: NosotrosSelect<false> | NosotrosSelect<true>;
   };
   locale: null;
@@ -153,6 +155,28 @@ export interface Post {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "eventos".
+ */
+export interface Evento {
+  id: number;
+  eventTitle?: string | null;
+  eventDescription?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "proyectos".
+ */
+export interface Proyecto {
+  id: number;
+  projectTitle?: string | null;
+  projectDescription?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -203,6 +227,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'posts';
         value: number | Post;
+      } | null)
+    | ({
+        relationTo: 'eventos';
+        value: number | Evento;
+      } | null)
+    | ({
+        relationTo: 'proyectos';
+        value: number | Proyecto;
       } | null)
     | ({
         relationTo: 'users';
@@ -258,6 +290,26 @@ export interface PostsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   includedInBlog?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "eventos_select".
+ */
+export interface EventosSelect<T extends boolean = true> {
+  eventTitle?: T;
+  eventDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "proyectos_select".
+ */
+export interface ProyectosSelect<T extends boolean = true> {
+  projectTitle?: T;
+  projectDescription?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -336,17 +388,6 @@ export interface Home {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "eventos".
- */
-export interface Evento {
-  id: number;
-  eventTitle?: string | null;
-  eventDescription?: string | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "nosotros".
  */
 export interface Nosotro {
@@ -363,17 +404,6 @@ export interface Nosotro {
 export interface HomeSelect<T extends boolean = true> {
   heroTitle?: T;
   heroSubtitle?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "eventos_select".
- */
-export interface EventosSelect<T extends boolean = true> {
-  eventTitle?: T;
-  eventDescription?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

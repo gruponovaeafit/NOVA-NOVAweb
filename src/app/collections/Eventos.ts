@@ -1,6 +1,6 @@
-import { GlobalConfig } from 'payload'
+import { CollectionConfig } from 'payload'
 
-export const Eventos: GlobalConfig = {
+export const Eventos: CollectionConfig = {
   slug: 'eventos',
   fields: [
     {
