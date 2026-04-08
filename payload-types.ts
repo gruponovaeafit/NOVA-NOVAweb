@@ -349,8 +349,8 @@ export interface Home {
  */
 export interface Nosotro {
   id: number;
-  aboutTitle?: string | null;
-  aboutDescription?: string | null;
+  aboutText?: string | null;
+  historyText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -370,8 +370,8 @@ export interface HomeSelect<T extends boolean = true> {
  * via the `definition` "nosotros_select".
  */
 export interface NosotrosSelect<T extends boolean = true> {
-  aboutTitle?: T;
-  aboutDescription?: T;
+  aboutText?: T;
+  historyText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

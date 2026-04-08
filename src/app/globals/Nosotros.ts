@@ -4,11 +4,13 @@ export const Nosotros: GlobalConfig = {
   slug: 'nosotros',
   fields: [
     {
-      name: 'aboutTitle',
-      type: 'text',
+      name: 'aboutText',
+      label: 'Who We Are Text',
+      type: 'textarea',
     },
     {
-      name: 'aboutDescription',
+      name: 'historyText',
+      label: 'Our History Text',
       type: 'textarea',
     },
   ],

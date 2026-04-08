@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Press_Start_2P, JetBrains_Mono } from 'next/font/google';
 
 const pixelFont = Press_Start_2P({ weight: '400', subsets: ['latin'], display: 'swap' });
@@ -13,6 +13,26 @@ const fotos = [
 
 export default function NosotrosPage() {
   const [currentFoto, setCurrentFoto] = useState(0);
+
+  // stat efor saving a teporary "" (empty) falue for the about text
+  // when loaded, it will be updated with the value from the global config
+  // setAbout text is a function that updates the aboutText state variable in form setAboutText(newValue)
+  const [aboutText, setAboutText] = useState('');
+  const [historyText, setHistoryText] = useState('');
+
+
+  // useEffect is a React hook that runs a function after the component has rendered
+  useEffect(() => {
+    const loadNosotros = async () => {
+      const res = await fetch('/api/globals/nosotros?depth=2&draft=false');
+      if (!res.ok) return;
+      const data = await res.json();
+      setAboutText(data?.aboutText ?? '');
+      setHistoryText(data?.historyText ?? '');
+    };
+
+    loadNosotros();
+  }, []);
 
   const nextFoto = () => {
     setCurrentFoto((prev) => (prev === fotos.length - 1 ? 0 : prev + 1));
@@ -50,6 +70,12 @@ export default function NosotrosPage() {
           ¿Quienes somos?
         </h2>
         <div className={`${jetBrainsFont.className} max-w-[650px] lg:max-w-[800px] text-slate-300 leading-relaxed text-sm md:text-base lg:text-lg px-4 flex flex-col gap-6`}>
+          {/* Preserve line breaks from Payload textarea content */}
+          {aboutText ? <p className="whitespace-pre-line">{aboutText}</p> : null}
+           
+
+          {/*original, hardcoded text*/}
+          {/*
           <p>
             <strong className="text-white font-bold">NOVA</strong> es un grupo estudiantil de la <strong className="text-white font-bold">Universidad EAFIT</strong> creado por y para estudiantes que creen en el poder de la tecnología, la creatividad y la innovación para transformar realidades.
           </p>
@@ -59,6 +85,8 @@ export default function NosotrosPage() {
           <p>
             Nuestro propósito es traer el futuro al campus mediante la creación de espacios, proyectos y eventos que conecten a los estudiantes con el mundo de la <strong className="text-white font-bold">innovación</strong>.
           </p>
+          */}
+        
         </div>
       </section>
 
@@ -140,6 +168,12 @@ export default function NosotrosPage() {
       {/* 4. TEXTO ADICIONAL */}
       <section className="text-center py-[40px] px-5 flex flex-col items-center z-[2] relative mb-[40px]">
         <div className={`${jetBrainsFont.className} max-w-[650px] lg:max-w-[800px] text-slate-300 leading-relaxed text-sm md:text-base lg:text-lg px-4 flex flex-col gap-6`}>
+          
+          {/* Preserve line breaks from Payload textarea content */}
+          {historyText ? <p className="whitespace-pre-line">{historyText}</p> : null}
+          
+          {/*original, hardcoded text*/}
+          {/*
           <p>
             <strong className="text-white font-bold">NOVA</strong> nació con la idea de crear un espacio donde estudiantes de diferentes carreras pudieran unirse para <strong className="text-white font-bold">innovar</strong> y construir soluciones juntos. Desde el inicio, buscamos formar una comunidad multidisciplinaria capaz de transformar ideas en <strong className="text-white font-bold">impacto real</strong>.
           </p>
@@ -149,6 +183,8 @@ export default function NosotrosPage() {
           <p>
             Después de este proceso, <strong className="text-white font-bold">NOVA</strong> fue aprobado como grupo estudiantil el <strong className="text-[#6600ff] font-bold">19 de octubre</strong>, marcando el inicio de una comunidad creada por estudiantes para impulsar la <strong className="text-white font-bold">innovación</strong> en el campus.
           </p>
+          */}
+          
         </div>
       </section>
 
