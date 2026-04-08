@@ -67,7 +67,8 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    posts: Post;
+    eventos: Evento;
+    proyectos: Proyecto;
     'payload-kv': PayloadKv;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
@@ -76,7 +77,8 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    posts: PostsSelect<false> | PostsSelect<true>;
+    eventos: EventosSelect<false> | EventosSelect<true>;
+    proyectos: ProyectosSelect<false> | ProyectosSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -87,8 +89,14 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    home: Home;
+    nosotros: Nosotro;
+  };
+  globalsSelect: {
+    home: HomeSelect<false> | HomeSelect<true>;
+    nosotros: NosotrosSelect<false> | NosotrosSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -119,27 +127,23 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
+ * via the `definition` "eventos".
  */
-export interface Post {
+export interface Evento {
   id: number;
-  title: string;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  includedInBlog?: boolean | null;
+  eventTitle?: string | null;
+  eventDescription?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "proyectos".
+ */
+export interface Proyecto {
+  id: number;
+  projectTitle?: string | null;
+  projectDescription?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -193,8 +197,12 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
-        relationTo: 'posts';
-        value: number | Post;
+        relationTo: 'eventos';
+        value: number | Evento;
+      } | null)
+    | ({
+        relationTo: 'proyectos';
+        value: number | Proyecto;
       } | null)
     | ({
         relationTo: 'users';
@@ -244,12 +252,21 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
+ * via the `definition` "eventos_select".
  */
-export interface PostsSelect<T extends boolean = true> {
-  title?: T;
-  content?: T;
-  includedInBlog?: T;
+export interface EventosSelect<T extends boolean = true> {
+  eventTitle?: T;
+  eventDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "proyectos_select".
+ */
+export interface ProyectosSelect<T extends boolean = true> {
+  projectTitle?: T;
+  projectDescription?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -314,6 +331,50 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: number;
+  heroTitle?: string | null;
+  heroSubtitle?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nosotros".
+ */
+export interface Nosotro {
+  id: number;
+  aboutText?: string | null;
+  historyText?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  heroTitle?: T;
+  heroSubtitle?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nosotros_select".
+ */
+export interface NosotrosSelect<T extends boolean = true> {
+  aboutText?: T;
+  historyText?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
