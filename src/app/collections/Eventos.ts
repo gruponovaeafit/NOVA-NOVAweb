@@ -2,6 +2,9 @@ import { CollectionConfig } from 'payload'
 
 export const Eventos: CollectionConfig = {
   slug: 'eventos',
+  access: {
+    read: () => true, // Allow all users (authenticated and unauthenticated) to read
+  },
   fields: [
     {
       name: 'eventTitle',
