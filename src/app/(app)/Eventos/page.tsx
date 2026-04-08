@@ -1,9 +1,33 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 import { Press_Start_2P } from 'next/font/google';
 
 const pixelFont = Press_Start_2P({ weight: '400', subsets: ['latin'], display: 'swap' });
 
 export default function EventosPage() {
+
+  // set events to empty before fetching data, load after fetching
+  const [events, setEvents] = React.useState({ docs: [] });
+
+  // useEffect to fetch data from payload
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch('/api/eventos');
+        const data = await response.json();
+        setEvents(data);
+        console.log('Fetched events:', data);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+
+    fetchEvents();
+  }, []); // Empty dependency array means this runs once on mount
+
+
+
+
   const styles = {
     // CAMBIO CLAVE: Eliminamos overflowX y minHeight forzado para que no compita con el body
     main: { 
@@ -103,7 +127,37 @@ export default function EventosPage() {
 
       {/* boxSizing asegura que el padding no "infle" el contenedor hacia los lados */}
       <section style={{ padding: '20px', position: 'relative' as const, boxSizing: 'border-box' }}>
+
+
+
+      {/* LOOP FOR EVENTS FROM PAYLOAD */}
+
+      {/* TODO: make event cards image/text col order intercalable */}
         
+      {events?.docs && Array.isArray(events.docs) && events.docs.map((event, index) => (
+        <div key={index} style={styles.cardWrapper as any}>
+          <div style={styles.dotsOverlay as any}></div>
+          <div style={styles.card as any}>
+            <div style={styles.imageContainer as any}>
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#3f3f46" strokeWidth="1">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M21 15l-5-5L5 21"/>
+              </svg>
+            </div>
+            <div style={styles.textContainer as any}>
+              <h2 className={pixelFont.className} style={styles.pixelTitle as any}>{event.eventTitle}</h2>
+              <p style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: '1.6' }}>
+                {event.eventDescription}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+
+
+        {/* Hard coded event cards */}
+
+        {/*
+
         <div style={styles.cardWrapper as any}>
           <div style={styles.dotsOverlay as any}></div>
           <div style={styles.card as any}>
@@ -137,6 +191,9 @@ export default function EventosPage() {
             </div>
           </div>
         </div>
+        */}
+
+
       </section>
     </main>
   );
