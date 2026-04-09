@@ -4,18 +4,33 @@ import styles from "./Footer.module.css";
 export default function Footer() {
   return (
     <footer className={styles.footer}>
+      {/* Columnas principales: FAQ y Contacto */}
       <div className={styles.container}>
         {/* Preguntas frecuentes */}
         <nav className={styles.col} aria-labelledby="faq-heading">
           <h2 id="faq-heading" className={styles.title}>Preguntas Frecuentes</h2>
           <ul className={styles.list}>
-            <li><Link href="/faq/participar">¿Cómo puedo participar en un evento de Nova?</Link></li>
-            <li><Link href="/faq/ubicacion">¿Dónde están ubicados?</Link></li>
-            <li><Link href="/faq/patrocinios">¿Con quién puedo hablar para patrocinios o alianzas?</Link></li>
-            <li><Link href="/faq/eventos">¿Cuáles son sus eventos?</Link></li>
-            <li><Link href="/faq/nova">¿Qué es Nova?</Link></li>
-            <li><Link href="/faq/omega">¿Qué es la OmegaHack?</Link></li>
-            <li><Link href="/faq/pertenecer">¿Cómo puedo pertenecer a Nova?</Link></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Cómo puedo participar en un evento de Nova?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Dónde están ubicados?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Con quién puedo hablar para patrocinios o alianzas?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Cuáles son sus eventos?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Qué es Nova?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Qué es la OmegaHack?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Cómo puedo pertenecer a Nova?
+            </a></li>
           </ul>
         </nav>
 
@@ -27,11 +42,13 @@ export default function Footer() {
             <a href="tel:+571234567890">+57 123 4567890</a>
           </address>
         </div>
+      </div>
 
-        {/* Redes sociales */}
-        <div className={styles.col} aria-labelledby="social-heading">
-          <h2 id="social-heading" className={styles.title}>Síguenos</h2>
-          <ul className={styles.social}>
+      {/* Fila inferior: línea separadora acortada + iconos sociales a la derecha */}
+      <div className={styles.bottomRow}>
+        <hr className={styles.divider} />
+        <div className={styles.socialWrapper}>
+          <ul className={styles.social} aria-label="Redes sociales">
             <li>
               <a href="https://x.com" aria-label="X (Twitter)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">

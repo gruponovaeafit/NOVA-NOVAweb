@@ -8,7 +8,7 @@ const jetBrainsFont = JetBrains_Mono({ subsets: ['latin'], display: 'swap' });
 const fotos = [
   '/Fotos_grupo.jpg',
   '/Foto_assesment.JPG',
-  '/Foto_integracion.JPG',
+  '/Foto_integracion.JPG'
 ];
 
 export default function NosotrosPage() {

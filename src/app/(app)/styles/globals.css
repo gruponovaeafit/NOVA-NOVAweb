@@ -16,6 +16,10 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #120027;
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+main {
+  width: 100%;
 }
