@@ -10,13 +10,27 @@ export default function Footer() {
         <nav className={styles.col} aria-labelledby="faq-heading">
           <h2 id="faq-heading" className={styles.title}>Preguntas Frecuentes</h2>
           <ul className={styles.list}>
-            <li><Link href="/faq/participar">¿Cómo puedo participar en un evento de Nova?</Link></li>
-            <li><Link href="/faq/ubicacion">¿Dónde están ubicados?</Link></li>
-            <li><Link href="/faq/patrocinios">¿Con quién puedo hablar para patrocinios o alianzas?</Link></li>
-            <li><Link href="/faq/eventos">¿Cuáles son sus eventos?</Link></li>
-            <li><Link href="/faq/nova">¿Qué es Nova?</Link></li>
-            <li><Link href="/faq/omega">¿Qué es la OmegaHack?</Link></li>
-            <li><Link href="/faq/pertenecer">¿Cómo puedo pertenecer a Nova?</Link></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Cómo puedo participar en un evento de Nova?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Dónde están ubicados?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Con quién puedo hablar para patrocinios o alianzas?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Cuáles son sus eventos?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Qué es Nova?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Qué es la OmegaHack?
+            </a></li>
+            <li><a href="https://ig.me/m/novaeafit">
+                ¿Cómo puedo pertenecer a Nova?
+            </a></li>
           </ul>
         </nav>
 
