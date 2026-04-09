@@ -6,19 +6,17 @@ import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "";
 
   const links = [
-    { href: "/nosotros", label: "Nosotros" },
+    { href: "/", label: "Nosotros" },
     { href: "/proyectos", label: "Proyectos" },
     { href: "/grupo", label: "Grupo" },
     { href: "/eventos", label: "Eventos" },
   ];
 
-  // Close the mobile menu on route change
   useEffect(() => setOpen(false), [pathname]);
 
-  // Close on ESC
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
@@ -26,17 +24,17 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="bg-purple-700 text-white relative">
+    <nav
+      style={{ background: "#120027", borderBottom: "3px solid #F2F3FB" }}
+      className="text-white relative"
+    >
       <div className="mx-auto max-w-7xl px-4">
         <div className="relative flex h-16 items-center justify-between">
-          {/* Left: Logo (home) */}
-          <div className="flex-shrink-0">
-            <Link href="/" aria-label="Inicio">
-              <img src="/nova-logo-blanco.svg" alt="NOVA" className="h-8 w-auto" />
-            </Link>
-          </div>
 
-          {/* Center: Desktop menu (hidden on mobile) */}
+          {/* Spacer izquierdo para balancear (desktop) */}
+          <div className="hidden w-12 md:block" />
+
+          {/* Centro: menú desktop */}
           <div className="absolute left-1/2 hidden -translate-x-1/2 transform md:flex md:space-x-8 md:text-sm md:font-semibold">
             {links.map((link) => {
               const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
@@ -56,17 +54,23 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Right: Hamburger (shown on mobile) */}
-          <div className="md:hidden">
+          {/* Derecha: Logo */}
+          <div className="flex-shrink-0 ml-auto">
+            <Link href="/" aria-label="Inicio">
+              <img src="/nova-logo-blanco.svg" alt="NOVA" className="h-8 w-auto" />
+            </Link>
+          </div>
+
+          {/* Hamburger (mobile) */}
+          <div className="md:hidden ml-3">
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex items-center justify-center rounded-md p-2 hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-white/70"
+              className="inline-flex items-center justify-center rounded-md p-2 hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-white/70"
               aria-controls="mobile-menu"
               aria-expanded={open}
               aria-label="Abrir menú"
             >
-              {/* Icon: three lines / X */}
               <span className="sr-only">Abrir menú</span>
               <svg
                 className={`h-6 w-6 transition-transform ${open ? "rotate-90 opacity-0" : "opacity-100"}`}
@@ -88,13 +92,10 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
-
-          {/* Spacer to balance layout */}
-          <div className="hidden w-12 md:block" />
         </div>
       </div>
 
-      {/* Mobile panel */}
+      {/* Menú mobile */}
       <div
         id="mobile-menu"
         className={`md:hidden transition-[max-height,opacity] duration-200 ease-out overflow-hidden ${
@@ -110,8 +111,8 @@ export default function Navbar() {
                 href={link.href}
                 className={`block rounded px-3 py-2 text-base font-medium ${
                   isActive
-                    ? "bg-purple-800 text-white"
-                    : "text-white hover:bg-purple-800/70"
+                    ? "bg-purple-900 text-white"
+                    : "text-white hover:bg-purple-900/70"
                 }`}
               >
                 {link.label}

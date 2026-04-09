@@ -7,7 +7,7 @@ const pixelFont = Press_Start_2P({ weight: '400', subsets: ['latin'], display: '
 export default function EventosPage() {
 
   // set events to empty before fetching data, load after fetching
-  const [events, setEvents] = React.useState({ docs: [] });
+  const [events, setEvents] = React.useState<{ docs: any[] }>({ docs: [] });
 
   // useEffect to fetch data from payload
   useEffect(() => {
