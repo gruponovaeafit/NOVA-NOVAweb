@@ -48,6 +48,30 @@ function GrupoJunta() {
 // ─────────────────────────────────────────────
 const AÑOS = [
   {
+    año: "2023",
+    imgAño: "/año-2023.png",
+    departamentos: [
+      { label: "Presidente",      img: "/dept-Presidente-2023.png" },
+      { label: "Vice presidente", img: "/dept-VicePresidente-2023.png" },
+      { label: "RRPP",            img: "/dept-rrpp-2023.png" },
+      { label: "Gestión Humana",  img: "/dept-GH-2023.png" },
+      { label: "Communities",     img: "/dept-Comms-2023.png" },
+      { label: "Mercadeo",        img: "/dept-mercadeo-2023.png" },
+    ],
+  },
+  {
+    año: "2024",
+    imgAño: "/año-2024.png",
+    departamentos: [
+      { label: "Presidente",      img: "/dept-Presidente-2024.png" },
+      { label: "Vice presidente", img: "/dept-VicePresidente-2024.png" },
+      { label: "RRPP",            img: "/dept-rrpp-2024.png" },
+      { label: "Gestión Humana",  img: "/dept-GH-2024.png" },
+      { label: "Communities",     img: "/dept-Comms-2024.png" },
+      { label: "Mercadeo",        img: "/dept-mercadeo-2024.png" },
+    ],
+  },
+  {
     año: "2025",
     imgAño: "/año-2025.png", // por si se quiere usar la imagen del año en vez del svg fijo
     departamentos: [
@@ -117,7 +141,8 @@ function GrupoStats() {
 
         {/* imagen del año en el estilo del grupo */}
         <div className="grupo-stats__año">
-          <img src="/año.svg" alt={actual.año} className="grupo-stats__año-img" />
+          {/* Se usa el año en texto para que sea 100% dinámico sin depender de imágenes extra */}
+          <span className="grupo-stats__año-texto" style={{ fontSize: '4rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', fontStyle: 'italic', color: '#f0e0ff', letterSpacing: '4px' }}>{actual.año}</span>
         </div>
 
         {/* navegación: flecha izq — dots — flecha der */}

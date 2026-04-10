@@ -9,7 +9,8 @@ export default function Navbar() {
   const pathname = usePathname() ?? "";
 
   const links = [
-    { href: "/", label: "Nosotros" },
+    { href: "/", label: "Home" },
+    { href: "/nosotros", label: "Nosotros" },
     { href: "/proyectos", label: "Proyectos" },
     { href: "/grupo", label: "Grupo" },
     { href: "/eventos", label: "Eventos" },
@@ -29,13 +30,13 @@ export default function Navbar() {
       className="text-white relative"
     >
       <div className="mx-auto max-w-7xl px-4">
-        <div className="relative flex h-16 items-center justify-between">
+        <div className="relative flex h-20 items-center justify-between">
 
           {/* Spacer izquierdo para balancear (desktop) */}
           <div className="hidden w-12 md:block" />
 
           {/* Centro: menú desktop */}
-          <div className="absolute left-1/2 hidden -translate-x-1/2 transform md:flex md:space-x-8 md:text-sm md:font-semibold">
+          <div className="absolute left-1/2 hidden -translate-x-1/2 transform md:flex md:space-x-10 md:text-lg md:font-semibold">
             {links.map((link) => {
               const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
               return (
@@ -57,7 +58,7 @@ export default function Navbar() {
           {/* Derecha: Logo */}
           <div className="flex-shrink-0 ml-auto">
             <Link href="/" aria-label="Inicio">
-              <img src="/nova-logo-blanco.svg" alt="NOVA" className="h-8 w-auto" />
+              <img src="/nova-logo-blanco.svg" alt="NOVA" className="h-10 w-auto md:h-12" />
             </Link>
           </div>
 

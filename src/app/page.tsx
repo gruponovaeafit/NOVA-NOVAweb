@@ -33,53 +33,76 @@ function Hero() {
 // Las imágenes se cargan desde /imagen-ejemplo-{0,1,2}.jpg.
 // ---------------------------------------------------------------------------
 function ImageCarousel() {
+  const fotos = ["OMEGA-aula_2.jpeg", "OMEGA-aula.jpeg", "OMEGA-trabajo.jpeg"];
+  const [currentFoto, setCurrentFoto] = useState(0);
+
+  const nextFoto = () => {
+    setCurrentFoto((prev) => (prev === fotos.length - 1 ? 0 : prev + 1));
+  };
+  const prevFoto = () => {
+    setCurrentFoto((prev) => (prev === 0 ? fotos.length - 1 : prev - 1));
+  };
+
+  const getIdx = (offset: number) => {
+    return (currentFoto + offset + fotos.length) % fotos.length;
+  };
+
   return (
-    <section className="nova-carousel">
+    <section className="nova-carousel relative flex flex-col items-center">
       <div className="nova-carousel__grid-bg" />
 
-      <div className="nova-carousel__wrapper">
-        <button
-          className="nova-carousel__arrow nova-carousel__arrow--left"
+      <div className="relative flex items-center w-full justify-center max-w-[1300px] lg:max-w-[1600px] mx-auto px-2 sm:px-8 z-[5]">
+        <button 
+          className="absolute left-2 sm:left-4 md:left-8 w-10 h-10 md:w-[50px] md:h-[50px] lg:w-[64px] lg:h-[64px] rounded-full bg-white flex items-center justify-center cursor-pointer top-1/2 -translate-y-1/2 z-[10] shadow-[0_4px_15px_rgba(0,0,0,0.4)] transition-all hover:scale-110"
+          onClick={prevFoto}
           aria-label="Anterior"
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2.5}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="3" className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
 
-        <div className="nova-carousel__track">
-          {["OMEGA-aula_2.jpeg", "OMEGA-aula.jpeg", "OMEGA-trabajo.jpeg"].map((img, i) => (
-        <div key={i} className="nova-carousel__slot">
-        <img
-                src={`/${img}`}
-                alt={`Imagen carrusel ${i}`}
-                className="nova-carousel__img"
-              />
-            </div>
-          ))}
+        <div className="relative flex gap-[20px] py-[20px] px-[20px] sm:py-[40px] sm:px-[40px] md:py-[60px] md:px-[60px] lg:gap-[40px] lg:px-[100px] items-center justify-center w-full max-w-[1400px] lg:max-w-[1800px]">
+          <div 
+            className="absolute w-[300px] h-[200px] sm:w-[500px] sm:h-[300px] md:w-[600px] md:h-[350px] lg:w-[800px] lg:h-[450px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]"
+            style={{ background: 'rgba(102, 0, 255, 0.5)', filter: 'blur(100px)' }}
+          ></div>
+          
+          <div className="flex gap-4 sm:gap-6 md:gap-[40px] lg:gap-[60px] items-center">
+            {[-1, 0, 1].map((offset) => {
+              const idx = getIdx(offset);
+              const isCenter = offset === 0;
+
+              return (
+                <div 
+                  key={offset} 
+                  className={`
+                    relative rounded-xl border border-white/10 overflow-hidden flex items-center justify-center transition-all duration-300 ease-in-out bg-[#1e1e2e]
+                    ${isCenter 
+                      ? 'scale-110 md:scale-115 z-[4] shadow-[0_0_40px_rgba(102,0,255,0.5)] border-white/30 h-[200px] w-[200px] sm:h-[260px] sm:w-[260px] md:h-[300px] md:w-[300px] lg:h-[350px] lg:w-[350px]' 
+                      : 'opacity-60 scale-[0.85] cursor-pointer hidden sm:flex h-[150px] w-[150px] sm:h-[200px] sm:w-[200px] md:h-[240px] md:w-[240px] lg:h-[280px] lg:w-[280px]'
+                    }
+                  `}
+                  onClick={() => {
+                      if (offset === -1) prevFoto();
+                      if (offset === 1) nextFoto();
+                  }}
+                >
+                  <img 
+                    src={`/${fotos[idx]}`} 
+                    alt={`Carrusel ${idx}`} 
+                    className="w-full h-full object-cover transition-opacity duration-300 ease-in-out"
+                  />
+                </div>
+              )
+            })}
+          </div>
         </div>
 
-        <button
-          className="nova-carousel__arrow nova-carousel__arrow--right"
+        <button 
+          className="absolute right-2 sm:right-4 md:right-8 w-10 h-10 md:w-[50px] md:h-[50px] lg:w-[64px] lg:h-[64px] rounded-full bg-white flex items-center justify-center cursor-pointer top-1/2 -translate-y-1/2 z-[10] shadow-[0_4px_15px_rgba(0,0,0,0.4)] transition-all hover:scale-110"
+          onClick={nextFoto}
           aria-label="Siguiente"
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2.5}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="3" className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
     </section>
@@ -96,9 +119,9 @@ function MisionVision() {
 
   const content = {
     mision:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Buscamos acercar la industria 4.0 y transmitir su impacto en la sociedad actual y futura dentro de la comunidad universitaria; como grupo somos un espacio para aprender, crear, y transmitir conocimiento acerca de la tecnología y la innovación. Fomentamos la generación de ideas, la construcción de aprendizajes, el trabajo en equipo y la creatividad llevada al ámbito tecnológico. Todo esto dentro de un espacio de integridad, conocimiento, pluralismo e inclusión",
     vision:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.",
+      "Para el año 2030 NOVA será reconocido como grupo líder en tecnología e innovación dentro del ámbito universitario y regional. Consolidándose como un espacio de conexión y futuro. Desarrollando actividades innovadoras y dando soluciones mediante proyectos de software con impacto social",
   };
 
   return (
@@ -254,15 +277,15 @@ const styles = `
   /* Fondo decorativo SVG centrado */
   .nova-carousel__grid-bg {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 950px;
-    height: 600px;
-    background-image: url('fondo-puntos.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
+    background-size: 25px 25px;
     background-position: center;
+    -webkit-mask-image: radial-gradient(circle at center, black 20%, rgba(0,0,0,0.4) 50%, transparent 75%);
+    mask-image: radial-gradient(circle at center, black 20%, rgba(0,0,0,0.4) 50%, transparent 75%);
     z-index: 0;
     pointer-events: none;
   }
@@ -495,7 +518,6 @@ export default function Home() {
       <Hero />
       <ImageCarousel />
       <MisionVision />
-      <Cards />
     </>
   );
 }
