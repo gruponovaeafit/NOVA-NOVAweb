@@ -1,13 +1,14 @@
 import React from 'react';
-import { Press_Start_2P } from 'next/font/google';
+import { Press_Start_2P, JetBrains_Mono } from 'next/font/google';
 
 const pixelFont = Press_Start_2P({ weight: '400', subsets: ['latin'], display: 'swap' });
+const jetBrainsFont = JetBrains_Mono({ subsets: ['latin'], display: 'swap' });
 
 export default function EventosPage() {
   const styles = {
     // CAMBIO CLAVE: Eliminamos overflowX y minHeight forzado para que no compita con el body
     main: { 
-      backgroundColor: '#020212', 
+      backgroundColor: '#120027', 
       width: '100%',
       margin: 0,
       padding: 0,
@@ -102,7 +103,7 @@ export default function EventosPage() {
       </header>
 
       {/* boxSizing asegura que el padding no "infle" el contenedor hacia los lados */}
-      <section style={{ padding: '20px', position: 'relative' as const, boxSizing: 'border-box' }}>
+      <section style={{ padding: '20px', position: 'relative' as const, boxSizing: 'border-box', overflow: 'hidden' }}>
         
         <div style={styles.cardWrapper as any}>
           <div style={styles.dotsOverlay as any}></div>
@@ -114,9 +115,12 @@ export default function EventosPage() {
             </div>
             <div style={styles.textContainer as any}>
               <h2 className={pixelFont.className} style={styles.pixelTitle as any}>Omega Hack</h2>
-              <p style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: '1.6' }}>
-                Participa en el desafío de programación más grande de la temporada.
+              <p className={jetBrainsFont.className} style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: '1.6', marginBottom: '20px' }}>
+                Participa en el evento multidisciplinario más grande del Valle de Aburrá.
               </p>
+              <a href="https://www.omegahack.com/" target="_blank" rel="noopener noreferrer" className={jetBrainsFont.className} style={{ padding: '12px 24px', backgroundColor: '#6600ff', color: 'white', borderRadius: '8px', textDecoration: 'none', display: 'inline-block', alignSelf: 'center', fontWeight: 'bold', border: '1px solid #7a1cff' }}>
+                Conoce más
+              </a>
             </div>
           </div>
         </div>
@@ -126,9 +130,12 @@ export default function EventosPage() {
           <div style={styles.card as any}>
             <div style={styles.textContainer as any}>
               <h2 className={pixelFont.className} style={styles.pixelTitle as any}>Next</h2>
-              <p style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: '1.6' }}>
+              <p className={jetBrainsFont.className} style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: '1.6', marginBottom: '20px' }}>
                 Explora las fronteras de la tecnología en nuestro próximo evento.
               </p>
+              <div className={jetBrainsFont.className} style={{ padding: '12px 24px', backgroundColor: 'rgba(255,255,255,0.05)', color: '#888', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'not-allowed', display: 'inline-block', alignSelf: 'center', fontWeight: 'bold' }}>
+                Próximamente
+              </div>
             </div>
             <div style={styles.imageContainer as any}>
               <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#3f3f46" strokeWidth="1">
