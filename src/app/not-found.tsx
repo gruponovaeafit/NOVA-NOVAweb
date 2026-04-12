@@ -60,28 +60,34 @@ const styles = `
   }
 `;
 
-export default function NotFound() {
+export default function ErrorPage() {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: styles }} />
-      <section className="error-page">
-        <div className="error-page__wrapper">
 
-          <img
-            src="/mensaje-error.svg"
-            alt="Error 404"
-            className="error-page__img"
-          />
+      <html>
+        <body>
+          
+          <style>{styles}</style>
+          <section className="error-page">
+            <div className="error-page__wrapper">
 
-          <button
-            className="error-page__btn"
-            onClick={() => window.location.href = "/"}
-          >
-            Volver al inicio
-          </button>
+              <img
+                src="/mensaje-error.svg"
+                alt="Error"
+                className="error-page__img"
+                />
 
-        </div>
-      </section>
+              <button
+                className="error-page__btn"
+                onClick={() => window.location.href = "/"}
+                >
+                Volver al inicio
+              </button>
+
+            </div>
+          </section>
+        </body>
+      </html>
     </>
   );
 }
