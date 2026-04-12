@@ -17,7 +17,9 @@ export default function EventosPage() {
         const response = await fetch('/api/eventos');
         const data = await response.json();
         setEvents(data);
-        console.log('Fetched events:', data);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Fetched events:', data);
+        }
       } catch (error) {
         console.error('Error fetching events:', error);
       }
