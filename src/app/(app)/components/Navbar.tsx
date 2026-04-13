@@ -27,7 +27,7 @@ export default function Navbar() {
   return (
     <nav
       style={{ background: "#120027", borderBottom: "3px solid #F2F3FB" }}
-      className="text-white relative"
+      className="text-white fixed top-0 left-0 w-full z-50"
     >
       <div className="mx-auto max-w-7xl px-4">
         <div className="relative flex h-20 items-center justify-between">
