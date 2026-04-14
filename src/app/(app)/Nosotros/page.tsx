@@ -26,7 +26,17 @@ export default function NosotrosPage() {
   };
 
   return (
-    <div className="bg-[#120027] min-h-screen text-white m-0 p-0 overflow-x-hidden">
+    <div className="bg-[#120027] min-h-screen text-white m-0 p-0 overflow-x-hidden relative">
+      {/* Fondo universal de proyecto */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px)',
+          backgroundSize: '30px 30px',
+          WebkitMaskImage: 'radial-gradient(circle at center 30%, black 20%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+          maskImage: 'radial-gradient(circle at center 30%, black 20%, rgba(0,0,0,0.5) 60%, transparent 100%)'
+        }}
+      ></div>
       
       {/* 1. HERO: Nosotros */}
       <header className="pt-[80px] px-5 pb-[40px] text-center flex flex-col items-center relative z-[2]">
@@ -78,12 +88,6 @@ export default function NosotrosPage() {
 
           <div 
             className="relative flex gap-[20px] py-[40px] px-[20px] sm:py-[60px] sm:px-[60px] md:py-[80px] md:px-[100px] lg:gap-[40px] lg:py-[100px] lg:px-[120px] items-center justify-center w-full max-w-[1400px] lg:max-w-[1800px] overflow-hidden"
-            style={{
-              backgroundImage: 'radial-gradient(circle, #3b82f6 1.2px, transparent 1.2px)',
-              backgroundSize: '24px 24px',
-              WebkitMaskImage: 'radial-gradient(circle, black 40%, rgba(0,0,0,0.5) 70%, transparent 95%)',
-              maskImage: 'radial-gradient(circle, black 40%, rgba(0,0,0,0.5) 70%, transparent 95%)'
-            }}
           >
             <div 
               className="absolute w-[300px] h-[200px] sm:w-[500px] sm:h-[300px] md:w-[600px] md:h-[350px] lg:w-[800px] lg:h-[450px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]"

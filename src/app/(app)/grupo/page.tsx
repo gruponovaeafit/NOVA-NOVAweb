@@ -110,9 +110,6 @@ function GrupoStats() {
 
   return (
     <section className="grupo-stats">
-      {/* fondo de malla detrás del contenedor */}
-      <div className="grupo-stats__malla" />
-
       <div className="grupo-stats__inner">
 
         {/* fila superior: 2 cuadros centrados */}
@@ -215,7 +212,7 @@ const styles = `
   /* ── Hero ── */
 
   .grupo-hero {
-    background: #120027;
+    background: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -253,7 +250,7 @@ const styles = `
   /* ── Junta ── */
 
   .grupo-junta {
-    background: #120027;
+    background: transparent;
     padding: 2rem 1.5rem 3rem;
   }
 
@@ -308,24 +305,9 @@ const styles = `
 
   .grupo-stats {
     position: relative;
-    background: #120027;
+    background: transparent;
     padding: 4rem 1.5rem 4rem;
     overflow: visible;
-  }
-
-  .grupo-stats__malla {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 130%;
-    height: 130%;
-    background-image: url('/malla-fondo.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    pointer-events: none;
-    z-index: 0;
   }
 
   .grupo-stats__inner {
@@ -458,7 +440,7 @@ const styles = `
   /* ── Áreas ── */
 
   .grupo-areas {
-    background: #120027;
+    background: transparent;
     padding: 2rem 1.5rem 4rem;
     width: 100%;
   }
@@ -495,12 +477,22 @@ const styles = `
 // página principal — navbar y footer van en el layout global
 export default function GrupoPage() {
   return (
-    <>
+    <div className="bg-[#120027] min-h-screen text-white m-0 p-0 overflow-x-hidden relative">
+      {/* Fondo universal de proyecto */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px)',
+          backgroundSize: '30px 30px',
+          WebkitMaskImage: 'radial-gradient(circle at center 30%, black 20%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+          maskImage: 'radial-gradient(circle at center 30%, black 20%, rgba(0,0,0,0.5) 60%, transparent 100%)'
+        }}
+      ></div>
       <style>{styles}</style>
       <GrupoHero />
       <GrupoJunta />
       <GrupoStats />
       <GrupoAreas />
-    </>
+    </div>
   );
 }
