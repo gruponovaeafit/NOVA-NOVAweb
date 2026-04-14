@@ -1,0 +1,91 @@
+
+.eventos-main {
+  background-color: #120027;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: relative;
+  min-height: 100vh;
+}
+
+.eventos-hero {
+  position: relative;
+  padding: 100px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.eventos-title-lightbox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 180px;
+  background: rgba(102, 0, 255, 0.85);
+  filter: blur(60px);
+  borderRadius: 50%;
+  z-index: 1;
+}
+
+.eventos-card-wrapper {
+  position: relative;
+  margin: 100px auto;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.eventos-card {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(10, 0, 26, 0.95);
+  width: 950px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+.eventos-pixel-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: white;
+  filter: drop-shadow(0 0 10px rgba(102, 0, 255, 1));
+}
+
+.eventos-image-container {
+  width: 100%;
+  max-width: 450px;
+  height: 350px;
+  background-color: #0f0f12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eventos-text-container {
+  flex: 1;
+  padding: 50px;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eventos-description {
+  font-size: 15px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
