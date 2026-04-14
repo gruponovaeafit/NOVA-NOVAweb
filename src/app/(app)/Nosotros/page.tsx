@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { Press_Start_2P, JetBrains_Mono } from 'next/font/google';
 
 const pixelFont = Press_Start_2P({ weight: '400', subsets: ['latin'], display: 'swap' });
@@ -11,19 +11,10 @@ const fotos = [
   '/Foto_integracion.JPG',
 ];
 
+import Carousel from '@/components/Carousel';
+
 export default function NosotrosPage() {
-  const [currentFoto, setCurrentFoto] = useState(0);
 
-  const nextFoto = () => {
-    setCurrentFoto((prev) => (prev === fotos.length - 1 ? 0 : prev + 1));
-  };
-  const prevFoto = () => {
-    setCurrentFoto((prev) => (prev === 0 ? fotos.length - 1 : prev - 1));
-  };
-
-  const getIdx = (offset: number) => {
-    return (currentFoto + offset + fotos.length) % fotos.length;
-  };
 
   return (
     <div className="bg-[#120027] min-h-screen text-white m-0 p-0 overflow-x-hidden relative">
@@ -78,67 +69,7 @@ export default function NosotrosPage() {
           NUESTRA HISTORIA
         </h2>
         
-        <div className="relative flex items-center w-full justify-center max-w-[1300px] lg:max-w-[1600px] mx-auto px-2 sm:px-8">
-          <button 
-            className="absolute left-2 sm:left-4 md:left-8 w-10 h-10 md:w-[50px] md:h-[50px] lg:w-[64px] lg:h-[64px] rounded-full bg-white flex items-center justify-center cursor-pointer top-1/2 -translate-y-1/2 z-[10] shadow-[0_4px_15px_rgba(0,0,0,0.4)] transition-all hover:scale-110"
-            onClick={prevFoto}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="3" className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-
-          <div 
-            className="relative flex gap-[20px] py-[40px] px-[20px] sm:py-[60px] sm:px-[60px] md:py-[80px] md:px-[100px] lg:gap-[40px] lg:py-[100px] lg:px-[120px] items-center justify-center w-full max-w-[1400px] lg:max-w-[1800px] overflow-hidden"
-          >
-            <div 
-              className="absolute w-[300px] h-[200px] sm:w-[500px] sm:h-[300px] md:w-[600px] md:h-[350px] lg:w-[800px] lg:h-[450px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]"
-              style={{ background: 'rgba(102, 0, 255, 0.5)', filter: 'blur(100px)' }}
-            ></div>
-            
-            <div className="flex gap-4 sm:gap-6 md:gap-[40px] lg:gap-[60px] items-center">
-              {[-1, 0, 1].map((offset) => {
-                const idx = getIdx(offset);
-                const isCenter = offset === 0;
-
-                return (
-                  <div 
-                    key={offset} 
-                    className={`
-                      relative w-fit h-fit rounded-xl border border-white/10 overflow-hidden flex items-center justify-center transition-all duration-300 ease-in-out bg-[#1e1e2e]
-                      ${isCenter 
-                        ? 'scale-110 md:scale-115 z-[4] shadow-[0_0_40px_rgba(102,0,255,0.5)] border-white/30' 
-                        : 'opacity-60 scale-[0.85] cursor-pointer hidden sm:flex'
-                      }
-                    `}
-                    onClick={() => {
-                        if (offset === -1) prevFoto();
-                        if (offset === 1) nextFoto();
-                    }}
-                  >
-                    <img 
-                      src={fotos[idx]} 
-                      alt={`Historia ${idx}`} 
-                      className={`
-                        transition-opacity duration-300 ease-in-out object-cover rounded-xl
-                        ${isCenter
-                          ? 'h-[250px] sm:h-[350px] md:h-[420px] lg:h-[500px] w-auto max-w-[85vw]'
-                          : 'h-[160px] sm:h-[250px] md:h-[320px] lg:h-[400px] w-auto max-w-[30vw]'
-                        }
-                      `}
-                    />
-                  </div>
-                )
-              })}
-            </div>
-            
-          </div>
-
-          <button 
-            className="absolute right-2 sm:right-4 md:right-8 w-10 h-10 md:w-[50px] md:h-[50px] lg:w-[64px] lg:h-[64px] rounded-full bg-white flex items-center justify-center cursor-pointer top-1/2 -translate-y-1/2 z-[10] shadow-[0_4px_15px_rgba(0,0,0,0.4)] transition-all hover:scale-110"
-            onClick={nextFoto}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="3" className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-        </div>
+        <Carousel images={fotos} />
       </section>
 
       {/* 4. TEXTO ADICIONAL */}
