@@ -1,7 +1,7 @@
-"use client";
+"use client"
 import { useState } from "react";
 import "./styles/home.css";
-import Carousel from "@/components/Carousel";
+import Carousel from "./components/Carousel";
 
 // ---------------------------------------------------------------------------
 // Hero
@@ -28,7 +28,25 @@ function Hero() {
   );
 }
 
+// ---------------------------------------------------------------------------
+// ImageCarousel
+// Now uses the global Carousel component with auto-play.
+// ---------------------------------------------------------------------------
+const CAROUSEL_IMAGES = ["OMEGA-aula_2.jpeg", "OMEGA-aula.jpeg", "OMEGA-trabajo.jpeg"].map(
+  (img) => `/${img}`
+);
 
+function ImageCarousel() {
+  return (
+    <section className="nova-carousel">
+      <Carousel
+        images={CAROUSEL_IMAGES}
+        altPrefix="Imagen carrusel"
+        autoPlayMs={4000}
+      />
+    </section>
+  );
+}
 
 // ---------------------------------------------------------------------------
 // MisionVision
@@ -66,6 +84,7 @@ function MisionVision() {
   );
 }
 
+
 // ---------------------------------------------------------------------------
 // Page
 // Componente raíz que ensambla todas las secciones de la landing.
@@ -84,7 +103,7 @@ export default function Home() {
         }}
       ></div>
       <Hero />
-      <Carousel images={["/OMEGA-aula_2.jpeg", "/OMEGA-aula.jpeg", "/Foto_OMega.jpg"]} />
+      <ImageCarousel />
       <MisionVision />
     </div>
   );

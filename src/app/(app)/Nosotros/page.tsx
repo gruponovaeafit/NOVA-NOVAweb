@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { Press_Start_2P, JetBrains_Mono } from 'next/font/google';
+import Carousel from '../components/Carousel';
 
 const pixelFont = Press_Start_2P({ weight: '400', subsets: ['latin'], display: 'swap' });
 const jetBrainsFont = JetBrains_Mono({ subsets: ['latin'], display: 'swap' });
@@ -11,11 +12,7 @@ const fotos = [
   '/Foto_integracion.JPG',
 ];
 
-import Carousel from '@/components/Carousel';
-
 export default function NosotrosPage() {
-
-
   return (
     <div className="bg-[#120027] min-h-screen text-white m-0 p-0 overflow-x-hidden relative">
       {/* Fondo universal de proyecto */}
@@ -69,7 +66,7 @@ export default function NosotrosPage() {
           NUESTRA HISTORIA
         </h2>
         
-        <Carousel images={fotos} />
+        <Carousel images={fotos} altPrefix="Historia" autoPlayMs={5000} />
       </section>
 
       {/* 4. TEXTO ADICIONAL */}
@@ -79,7 +76,7 @@ export default function NosotrosPage() {
             <strong className="text-white font-bold">NOVA</strong> nació con la idea de crear un espacio donde estudiantes de diferentes carreras pudieran unirse para <strong className="text-white font-bold">innovar</strong> y construir soluciones juntos. Desde el inicio, buscamos formar una comunidad multidisciplinaria capaz de transformar ideas en <strong className="text-white font-bold">impacto real</strong>.
           </p>
           <p>
-            Durante su creación recibimos el apoyo de estudiantes, profesores y directivos de la <strong className="text-white font-bold">Universidad EAFIT</strong>, así como la inspiración de líderes como <strong className="text-white font-bold">Claudia Restrepo</strong>, quien afirmó que <span className="text-white italic">“el mundo no va hacia la estandarización, va hacia el algoritmo”</span>.
+            Durante su creación recibimos el apoyo de estudiantes, profesores y directivos de la <strong className="text-white font-bold">Universidad EAFIT</strong>, así como la inspiración de líderes como <strong className="text-white font-bold">Claudia Restrepo</strong>, quien afirmó que <span className="text-white italic">&ldquo;el mundo no va hacia la estandarización, va hacia el algoritmo&rdquo;</span>.
           </p>
           <p>
             Después de este proceso, <strong className="text-white font-bold">NOVA</strong> fue aprobado como grupo estudiantil el <strong className="text-[#6600ff] font-bold">19 de octubre</strong>, marcando el inicio de una comunidad creada por estudiantes para impulsar la <strong className="text-white font-bold">innovación</strong> en el campus.
