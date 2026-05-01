@@ -146,6 +146,7 @@ export interface Proyecto {
   id: number;
   projectTitle?: string | null;
   projectDescription?: string | null;
+  projectImageUrl?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -292,6 +293,7 @@ export interface EventosSelect<T extends boolean = true> {
 export interface ProyectosSelect<T extends boolean = true> {
   projectTitle?: T;
   projectDescription?: T;
+  projectImageUrl?: T;
   updatedAt?: T;
   createdAt?: T;
 }

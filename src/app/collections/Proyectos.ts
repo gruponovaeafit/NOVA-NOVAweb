@@ -14,5 +14,10 @@ export const Proyectos: CollectionConfig = {
       name: 'projectDescription',
       type: 'textarea',
     },
+    {
+      name: 'projectImageUrl',
+      type: 'text',
+      label: 'URL de la imagen' 
+    },
   ],
 }
