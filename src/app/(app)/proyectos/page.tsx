@@ -53,9 +53,9 @@ export default function ProyectosPage() {
           style={{ background: 'rgba(102, 0, 255, 0.85)', filter: 'blur(60px)' }}
         ></div>
         <img 
-          src="/Proyectos.png" 
+          src="/proyecto.svg" 
           alt="Proyectos Title" 
-          className="w-full max-w-[300px] md:max-w-[450px] lg:max-w-[550px]"
+          className="w-full max-w-[300px] md:max-w-[500px] lg:max-w-[650px] relative z-[3]"
           onError={(e) => {
             e.currentTarget.style.display = 'none';
             const fallback = document.getElementById('title-fallback');

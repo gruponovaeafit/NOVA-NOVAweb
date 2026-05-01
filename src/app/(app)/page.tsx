@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./styles/home.css";
 import Carousel from "./components/Carousel";
 
@@ -16,13 +16,13 @@ function Hero() {
 
       <p className="nova-hero__tagline">
         "Grupo estudiantil de tecnología e innovación"
+        
       </p>
 
       <p className="nova-hero__desc">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        UN ESPACIO PARA SOÑAR, APRENDER, CREAR E INNOVAR
+Creemos en el poder de la tecnología y la creatividad para transformar realidades.
+
       </p>
     </section>
   );
@@ -30,17 +30,38 @@ function Hero() {
 
 // ---------------------------------------------------------------------------
 // ImageCarousel
-// Now uses the global Carousel component with auto-play.
+// Now uses the global Carousel component with auto-play and fetches images from Payload.
 // ---------------------------------------------------------------------------
-const CAROUSEL_IMAGES = ["OMEGA-aula_2.jpeg", "OMEGA-aula.jpeg", "OMEGA-trabajo.jpeg"].map(
-  (img) => `/${img}`
-);
-
 function ImageCarousel() {
+  const [images, setImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchHomeData = async () => {
+      try {
+        const res = await fetch('/api/globals/home?depth=1');
+        if (!res.ok) return;
+        const data = await res.json();
+        
+        if (data.carouselImages && Array.isArray(data.carouselImages)) {
+          const urls = data.carouselImages
+            .map((img: any) => img.url)
+            .filter((url: string | undefined) => !!url);
+          setImages(urls);
+        }
+      } catch (error) {
+        console.error("Error fetching carousel images:", error);
+      }
+    };
+
+    fetchHomeData();
+  }, []);
+
+  if (images.length === 0) return null;
+
   return (
     <section className="nova-carousel">
       <Carousel
-        images={CAROUSEL_IMAGES}
+        images={images}
         altPrefix="Imagen carrusel"
         autoPlayMs={4000}
       />
@@ -58,9 +79,9 @@ function MisionVision() {
 
   const content = {
     mision:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Buscamos acercar la industria 4.0 y transmitir su impacto en la sociedad actual y futura dentro de la comunidad universitaria; como grupo somos un espacio para aprender, crear, y transmitir conocimiento acerca de la tecnología y la innovación. Fomentamos la generación de ideas, la construcción de aprendizajes, el trabajo en equipo y la creatividad llevada al ámbito tecnológico. Todo esto dentro de un espacio de integridad, conocimiento, pluralismo e inclusión.",
     vision:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.",
+      "Posicionarnos como un grupo de referencia y referente dentro de la Universidad de Guadalajara en materia de industria 4.0, tecnología e innovación, logrando tener un impacto positivo en la comunidad universitaria y en la sociedad.",
   };
 
   return (

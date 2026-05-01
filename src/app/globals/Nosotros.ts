@@ -16,5 +16,11 @@ export const Nosotros: GlobalConfig = {
       label: 'Our History Text',
       type: 'textarea',
     },
+    {
+      name: 'historyImages',
+      type: 'relationship',
+      relationTo: 'media',
+      hasMany: true,
+    },
   ],
 }

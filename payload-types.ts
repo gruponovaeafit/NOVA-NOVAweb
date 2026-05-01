@@ -387,6 +387,7 @@ export interface Home {
   id: number;
   heroTitle?: string | null;
   heroSubtitle?: string | null;
+  carouselImages?: (number | Media)[] | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -398,6 +399,7 @@ export interface Nosotro {
   id: number;
   aboutText?: string | null;
   historyText?: string | null;
+  historyImages?: (number | Media)[] | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -408,6 +410,7 @@ export interface Nosotro {
 export interface HomeSelect<T extends boolean = true> {
   heroTitle?: T;
   heroSubtitle?: T;
+  carouselImages?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -419,6 +422,7 @@ export interface HomeSelect<T extends boolean = true> {
 export interface NosotrosSelect<T extends boolean = true> {
   aboutText?: T;
   historyText?: T;
+  historyImages?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

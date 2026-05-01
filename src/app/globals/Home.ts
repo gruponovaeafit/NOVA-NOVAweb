@@ -14,5 +14,11 @@ export const Home: GlobalConfig = {
       name: 'heroSubtitle',
       type: 'textarea',
     },
+    {
+      name: 'carouselImages',
+      type: 'relationship',
+      relationTo: 'media',
+      hasMany: true,
+    },
   ],
 }

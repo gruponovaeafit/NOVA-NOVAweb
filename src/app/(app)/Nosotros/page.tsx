@@ -1,18 +1,39 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Press_Start_2P, JetBrains_Mono } from 'next/font/google';
 import Carousel from '../components/Carousel';
 
 const pixelFont = Press_Start_2P({ weight: '400', subsets: ['latin'], display: 'swap' });
 const jetBrainsFont = JetBrains_Mono({ subsets: ['latin'], display: 'swap' });
 
-const fotos = [
-  '/Fotos_grupo.jpg',
-  '/Foto_assesment.JPG',
-  '/Foto_integracion.JPG',
-];
-
 export default function NosotrosPage() {
+  const [aboutText, setAboutText] = useState('');
+  const [historyText, setHistoryText] = useState('');
+  const [historyImages, setHistoryImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    const loadNosotros = async () => {
+      try {
+        const res = await fetch('/api/globals/nosotros?depth=2&draft=false');
+        if (!res.ok) return;
+        const data = await res.json();
+        setAboutText(data?.aboutText ?? '');
+        setHistoryText(data?.historyText ?? '');
+        
+        if (data.historyImages && Array.isArray(data.historyImages)) {
+          const urls = data.historyImages
+            .map((img: any) => img.url)
+            .filter((url: string | undefined) => !!url);
+          setHistoryImages(urls);
+        }
+      } catch (error) {
+        console.error("Error loading Nosotros data:", error);
+      }
+    };
+
+    loadNosotros();
+  }, []);
+
   return (
     <div className="bg-[#120027] min-h-screen text-white m-0 p-0 overflow-x-hidden relative">
       {/* Fondo universal de proyecto */}
@@ -42,21 +63,21 @@ export default function NosotrosPage() {
       {/* 2. SECCIÓN QUIÉNES SOMOS */}
       <section className="text-center py-[40px] px-5 flex flex-col items-center z-[2] relative">
         <div className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#1e1e2e] rounded-[20px] border-2 border-white/10 flex items-center justify-center mb-[40px] overflow-hidden">
-          <img src={fotos[0]} alt="Quienes somos" className="w-full h-full object-cover" />
+          {historyImages.length > 0 ? (
+            <img src={historyImages[0]} alt="Quienes somos" className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full bg-white/5 animate-pulse" />
+          )}
         </div>
         <h2 className={`${pixelFont.className} text-xl md:text-2xl lg:text-3xl mb-[20px]`}>
           ¿Quienes somos?
         </h2>
         <div className={`${jetBrainsFont.className} max-w-[650px] lg:max-w-[800px] text-slate-300 leading-relaxed text-sm md:text-base lg:text-lg px-4 flex flex-col gap-6`}>
-          <p>
-            <strong className="text-white font-bold">NOVA</strong> es un grupo estudiantil de la <strong className="text-white font-bold">Universidad EAFIT</strong> creado por y para estudiantes que creen en el poder de la tecnología, la creatividad y la innovación para transformar realidades.
-          </p>
-          <p>
-            Somos una comunidad multidisciplinaria donde estudiantes de distintas carreras se encuentran para aprender, crear y desarrollar ideas que generen <strong className="text-white font-bold">impacto</strong>. Creemos que cuando diferentes perspectivas se unen, es posible construir soluciones que realmente transformen nuestro entorno.
-          </p>
-          <p>
-            Nuestro propósito es traer el futuro al campus mediante la creación de espacios, proyectos y eventos que conecten a los estudiantes con el mundo de la <strong className="text-white font-bold">innovación</strong>.
-          </p>
+          {aboutText ? (
+            <p className="whitespace-pre-line">{aboutText}</p>
+          ) : (
+             <p>Cargando información...</p>
+          )}
         </div>
       </section>
 
@@ -66,21 +87,17 @@ export default function NosotrosPage() {
           NUESTRA HISTORIA
         </h2>
         
-        <Carousel images={fotos} altPrefix="Historia" autoPlayMs={5000} />
+        {historyImages.length > 0 && (
+          <Carousel images={historyImages} altPrefix="Historia" autoPlayMs={5000} />
+        )}
       </section>
 
       {/* 4. TEXTO ADICIONAL */}
       <section className="text-center py-[40px] px-5 flex flex-col items-center z-[2] relative mb-[40px]">
         <div className={`${jetBrainsFont.className} max-w-[650px] lg:max-w-[800px] text-slate-300 leading-relaxed text-sm md:text-base lg:text-lg px-4 flex flex-col gap-6`}>
-          <p>
-            <strong className="text-white font-bold">NOVA</strong> nació con la idea de crear un espacio donde estudiantes de diferentes carreras pudieran unirse para <strong className="text-white font-bold">innovar</strong> y construir soluciones juntos. Desde el inicio, buscamos formar una comunidad multidisciplinaria capaz de transformar ideas en <strong className="text-white font-bold">impacto real</strong>.
-          </p>
-          <p>
-            Durante su creación recibimos el apoyo de estudiantes, profesores y directivos de la <strong className="text-white font-bold">Universidad EAFIT</strong>, así como la inspiración de líderes como <strong className="text-white font-bold">Claudia Restrepo</strong>, quien afirmó que <span className="text-white italic">&ldquo;el mundo no va hacia la estandarización, va hacia el algoritmo&rdquo;</span>.
-          </p>
-          <p>
-            Después de este proceso, <strong className="text-white font-bold">NOVA</strong> fue aprobado como grupo estudiantil el <strong className="text-[#6600ff] font-bold">19 de octubre</strong>, marcando el inicio de una comunidad creada por estudiantes para impulsar la <strong className="text-white font-bold">innovación</strong> en el campus.
-          </p>
+          {historyText ? (
+            <p className="whitespace-pre-line">{historyText}</p>
+          ) : null}
         </div>
       </section>
 
