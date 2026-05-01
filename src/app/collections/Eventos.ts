@@ -14,5 +14,11 @@ export const Eventos: CollectionConfig = {
       name: 'eventDescription',
       type: 'textarea',
     },
+    {
+      name: 'eventImage',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
   ],
 }

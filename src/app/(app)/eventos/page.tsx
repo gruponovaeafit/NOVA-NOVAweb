@@ -9,6 +9,10 @@ const jetBrainsFont = JetBrains_Mono({ subsets: ['latin'], display: 'swap' });
 interface Event {
   eventTitle: string;
   eventDescription: string;
+  eventImage?: {
+    url: string;
+    alt: string;
+  };
 }
 
 export default function EventosPage() {
@@ -53,9 +57,17 @@ export default function EventosPage() {
             <div key={index} className="eventos-card-wrapper">
               <div className="eventos-card">
                 <div className="eventos-image-container">
-                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#3f3f46" strokeWidth="1">
-                    <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M21 15l-5-5L5 21"/>
-                  </svg>
+                  {event.eventImage?.url ? (
+                    <img 
+                      src={event.eventImage.url} 
+                      alt={event.eventImage.alt || event.eventTitle} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#3f3f46" strokeWidth="1">
+                      <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M21 15l-5-5L5 21"/>
+                    </svg>
+                  )}
                 </div>
                 <div className="eventos-text-container">
                   <h2 className={`${pixelFont.className} eventos-pixel-title`}>{event.eventTitle}</h2>
