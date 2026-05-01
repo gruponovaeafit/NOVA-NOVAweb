@@ -1,15 +1,36 @@
 "use client";
 
 import { useState } from "react";
+import { JetBrains_Mono } from "next/font/google";
 
-// título "GRUPO" con efecto de máscara/fade en los bordes
+const jetMono = JetBrains_Mono({ subsets: ["latin"], display: "swap" });
+
+// título "GRUPO" — mismo patrón que proyectos/page.tsx
 function GrupoHero() {
   return (
-    <section className="grupo-hero">
-      <div className="grupo-hero__title-img">
-        <img src="/grupo.svg" alt="GRUPO" />
-      </div>
-    </section>
+    <header className="pt-[100px] px-5 pb-[60px] text-center flex flex-col items-center relative z-10 shrink-0">
+      {/* Glow morado de fondo */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[120px] md:w-[450px] md:h-[180px] lg:w-[600px] lg:h-[240px] rounded-full z-[-1]"
+        style={{ background: 'rgba(102, 0, 255, 0.85)', filter: 'blur(60px)' }}
+      ></div>
+      <img
+        src="/grupoR.svg"
+        alt="Grupo Title"
+        className="w-full max-w-[300px] md:max-w-[500px] lg:max-w-[650px] relative z-[3]"
+        onError={(e) => {
+          e.currentTarget.style.display = 'none';
+          const fallback = document.getElementById('title-fallback');
+          if (fallback) fallback.style.display = 'block';
+        }}
+      />
+      <h1
+        id="title-fallback"
+        className="text-3xl md:text-5xl lg:text-6xl text-white hidden drop-shadow-[0_0_20px_rgba(102,0,255,1)]"
+      >
+        Grupo
+      </h1>
+    </header>
   );
 }
 
@@ -21,10 +42,7 @@ function GrupoJunta() {
         <div className="grupo-junta__left">
           <h1 className="grupo-junta__heading">Junta</h1>
           <p className="grupo-junta__text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            La junta es el órgano encargado de la administración y dirección del grupo, responsable de planificar, coordinar y supervisar las actividades de NOVA, asegurando el cumplimiento de sus objetivos y su alineación con la misión y visión, mientras promueve un trabajo organizado, estratégico y orientado al impacto.
           </p>
         </div>
 
@@ -51,48 +69,48 @@ const AÑOS = [
     año: "2023",
     imgAño: "/año-2023.png",
     departamentos: [
-      { label: "Presidente",      img: "/dept-Presidente-2023.png" },
+      { label: "Presidente", img: "/dept-Presidente-2023.png" },
       { label: "Vice presidente", img: "/dept-VicePresidente-2023.png" },
-      { label: "RRPP",            img: "/dept-rrpp-2023.png" },
-      { label: "Gestión Humana",  img: "/dept-GH-2023.png" },
-      { label: "Communities",     img: "/dept-Comms-2023.png" },
-      { label: "Mercadeo",        img: "/dept-mercadeo-2023.png" },
+      { label: "RRPP", img: "/dept-rrpp-2023.png" },
+      { label: "Gestión Humana", img: "/dept-GH-2023.png" },
+      { label: "Communities", img: "/dept-Comms-2023.png" },
+      { label: "Mercadeo", img: "/dept-mercadeo-2023.png" },
     ],
   },
   {
     año: "2024",
     imgAño: "/año-2024.png",
     departamentos: [
-      { label: "Presidente",      img: "/dept-Presidente-2024.png" },
+      { label: "Presidente", img: "/dept-Presidente-2024.png" },
       { label: "Vice presidente", img: "/dept-VicePresidente-2024.png" },
-      { label: "RRPP",            img: "/dept-rrpp-2024.png" },
-      { label: "Gestión Humana",  img: "/dept-GH-2024.png" },
-      { label: "Communities",     img: "/dept-Comms-2024.png" },
-      { label: "Mercadeo",        img: "/dept-mercadeo-2024.png" },
+      { label: "RRPP", img: "/dept-rrpp-2024.png" },
+      { label: "Gestión Humana", img: "/dept-GH-2024.png" },
+      { label: "Communities", img: "/dept-Comms-2024.png" },
+      { label: "Mercadeo", img: "/dept-mercadeo-2024.png" },
     ],
   },
   {
     año: "2025",
     imgAño: "/año-2025.png", // por si se quiere usar la imagen del año en vez del svg fijo
     departamentos: [
-      { label: "Presidente",      img: "/dept-Presidente-2025.png" },
+      { label: "Presidente", img: "/dept-Presidente-2025.png" },
       { label: "Vice presidente", img: "/dept-VicePresidente-2025.png" },
-      { label: "RRPP",            img: "/dept-rrpp-2025.png" },
-      { label: "Gestión Humana",  img: "/dept-GH-2025.png" },
-      { label: "Communities",     img: "/dept-Comms-2025.png" },
-      { label: "Mercadeo",        img: "/dept-mercadeo-2025.png" },
+      { label: "RRPP", img: "/dept-rrpp-2025.png" },
+      { label: "Gestión Humana", img: "/dept-GH-2025.png" },
+      { label: "Communities", img: "/dept-Comms-2025.png" },
+      { label: "Mercadeo", img: "/dept-mercadeo-2025.png" },
     ],
   },
   {
     año: "2026",
     imgAño: "/año-2026.png",
     departamentos: [
-      { label: "Presidente",      img: "/dept-Presidente-2026.png" },
+      { label: "Presidente", img: "/dept-Presidente-2026.png" },
       { label: "Vice presidente", img: "/dept-VicePresidente-2026.png" },
-      { label: "RRPP",            img: "/dept-rrpp-2026.png" },
-      { label: "Gestión Humana",  img: "/dept-GH-2026.png" },
-      { label: "Communities",     img: "/dept-Comms-2026.png" },
-      { label: "Mercadeo",        img: "/dept-mercadeo-2026.png" },
+      { label: "RRPP", img: "/dept-rrpp-2026.png" },
+      { label: "Gestión Humana", img: "/dept-GH-2026.png" },
+      { label: "Communities", img: "/dept-Comms-2026.png" },
+      { label: "Mercadeo", img: "/dept-mercadeo-2026.png" },
     ],
   },
 ];
@@ -183,17 +201,85 @@ function GrupoStats() {
   );
 }
 
-// lista de áreas — el diseño visual está todo en el SVG
+// ─────────────────────────────────────────────
+// Data de departamentos
+// ─────────────────────────────────────────────
+const DEPARTAMENTOS = [
+  {
+    titulo: "COMMS",
+    descripcion: "El departamento distintivo de NOVA, creado para lograr conexiones con distintas comunidades y entidades enfocadas al aprendizaje y la enseñanza de las nuevas tecnologías. Aquí, estudiantes de cualquier carrera pueden aprender de forma práctica o guiada sobre el mundo digital, obteniendo los conocimientos y habilidades informáticas utilizadas en el ámbito laboral.",
+    stickerSrc: "/Ajolote_COMM 1.svg",
+    stickerPos: "top-left" as const,
+  },
+  {
+    titulo: "RRPP",
+    descripcion: "Un departamento enfocado en conectar a las personas, acercarnos al entorno y las organizaciones, planear grandes eventos y expandir la visión de NOVA. Su principal objetivo es acercar el mundo digital a la comunidad eafitense mediante alianzas con diversas instituciones y empresas.",
+    stickerSrc: "/Tiburon_RRPP 1.svg",
+    stickerPos: "top-right" as const,
+  },
+  {
+    titulo: "MERCADEO",
+    descripcion: "Un departamento para la creatividad, la innovación, la divulgación y la comunicación. Mercadeo es un equipo lleno de talento en constante aprendizaje que busca compartir el mensaje de NOVA con los eafitenses, por medio de las redes sociales y las estrategias de marketing.",
+    stickerSrc: "/Pato_MERC (1).svg",
+    stickerPos: "top-left" as const,
+  },
+  {
+    titulo: "GH",
+    descripcion: "Un departamento que se encarga de reafirmar nuestro propósito de ser grupo estudiantil: NOVA es de estudiantes para estudiantes. Desde Gestión Humana se desarrollan proyectos que buscan el bienestar de los integrantes del grupo, por medio de la comunicación, formación y desarrollo de las personas.",
+    stickerSrc: "/Capi_GH 1.svg",
+    stickerPos: "bottom-right" as const,
+  },
+];
+
+// lista de áreas — diseño en código puro
 function GrupoAreas() {
   return (
     <section className="grupo-areas" style={{ width: "100%" }}>
-      <div className="grupo-areas__inner" style={{ maxWidth: "1000px", margin: "0 auto", width: "100%" }}>
-        <img
-          src="/departamentos.svg"
-          alt="Áreas del grupo"
-          className="grupo-areas__img"
-          style={{ width: "100%", height: "auto", display: "block" }}
-        />
+      <div className="grupo-areas__inner">
+        {/* Contenedor principal con borde y dot-grid */}
+        <div className="grupo-areas__box">
+          {DEPARTAMENTOS.map((dept, i) => (
+            <div
+              key={i}
+              className={`grupo-areas__row${i < DEPARTAMENTOS.length - 1 ? " grupo-areas__row--border" : ""}`}
+            >
+              {/* Sticker esquina superior izquierda */}
+              {dept.stickerPos === "top-left" && (
+                <img
+                  src={dept.stickerSrc}
+                  alt=""
+                  className="grupo-areas__sticker grupo-areas__sticker--tl"
+                  onError={(e) => { e.currentTarget.style.display = "none"; }}
+                />
+              )}
+              {/* Sticker esquina superior derecha */}
+              {dept.stickerPos === "top-right" && (
+                <img
+                  src={dept.stickerSrc}
+                  alt=""
+                  className="grupo-areas__sticker grupo-areas__sticker--tr"
+                  onError={(e) => { e.currentTarget.style.display = "none"; }}
+                />
+              )}
+              {/* Sticker esquina inferior derecha */}
+              {dept.stickerPos === "bottom-right" && (
+                <img
+                  src={dept.stickerSrc}
+                  alt=""
+                  className="grupo-areas__sticker grupo-areas__sticker--br"
+                  onError={(e) => { e.currentTarget.style.display = "none"; }}
+                />
+              )}
+
+              <div className="grupo-areas__row-content">
+                <h2 className="grupo-areas__titulo">{dept.titulo}</h2>
+                <p className={`${jetMono.className} grupo-areas__desc`}>
+                  {dept.descripcion}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -207,44 +293,6 @@ const styles = `
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
-
-  /* ── Hero ── */
-
-  .grupo-hero {
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem 3rem 2rem;
-    overflow: visible;
-  }
-
-  .grupo-hero__title-img {
-    display: flex;
-    justify-content: center;
-    overflow: visible;
-  }
-
-  .grupo-hero__title-img img {
-    max-width: 550px;
-    width: 100%;
-    height: auto;
-    mask-image: radial-gradient(ellipse 80% 80% at center, black 40%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 80% 80% at center, black 60%, transparent 100%);
-  }
-
-  /* fallback por si se usa texto en vez de imagen */
-  .grupo-hero__title-text {
-    font-size: clamp(3rem, 10vw, 7rem);
-    font-weight: 900;
-    color: #ffffff;
-    text-shadow:
-      0 0 30px rgba(160, 80, 255, 0.8),
-      0 0 60px rgba(160, 80, 255, 0.4),
-      4px 4px 0px #4a0080;
-    letter-spacing: 0.15em;
-    text-align: center;
   }
 
   /* ── Junta ── */
@@ -441,20 +489,93 @@ const styles = `
 
   .grupo-areas {
     background: transparent;
-    padding: 2rem 1.5rem 4rem;
+    padding: 2rem 1.5rem 5rem;
     width: 100%;
   }
 
   .grupo-areas__inner {
-    max-width: 860px;
+    max-width: 680px;
     width: 100%;
     margin: 0 auto;
   }
 
-  .grupo-areas__img {
-    width: 100%;
+  /* Caja con borde y fondo oscuro de puntos */
+  .grupo-areas__box {
+    border: 2px solid rgba(242, 243, 251, 0.5);
+    border-radius: 24px;
+    overflow: hidden;
+    background-color: #120027;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.18) 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+  }
+
+  /* Cada fila de departamento */
+  .grupo-areas__row {
+    position: relative;
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 7rem;
+  }
+
+  .grupo-areas__row--border {
+    border-bottom: 2px solid rgba(242, 243, 251, 0.45);
+  }
+
+  /* Contenido centrado */
+  .grupo-areas__row-content {
+    text-align: center;
+    z-index: 1;
+  }
+
+  .grupo-areas__titulo {
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    font-weight: 800;
+    color: #F2F3FB;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .grupo-areas__desc {
+    font-size: clamp(0.78rem, 1.6vw, 1rem);
+    color: #b09ad0;
+    line-height: 1.75;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* Stickers */
+  .grupo-areas__sticker {
+    position: absolute;
+    width: clamp(110px, 18vw, 170px);
     height: auto;
-    display: block;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .grupo-areas__sticker--tl {
+    top: -10px;
+    left: -15px;
+  }
+
+  .grupo-areas__sticker--tr {
+    top: -10px;
+    right: -15px;
+  }
+
+  .grupo-areas__sticker--br {
+    bottom: -10px;
+    right: -15px;
+  }
+
+  @media (max-width: 640px) {
+    .grupo-areas__row {
+      padding: 1.5rem 5rem;
+      min-height: 130px;
+    }
   }
 
   /* ── Responsive ── */
@@ -479,7 +600,7 @@ export default function GrupoPage() {
   return (
     <div className="bg-[#120027] min-h-screen text-white m-0 p-0 overflow-x-hidden relative">
       {/* Fondo universal de proyecto */}
-      <div 
+      <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px)',

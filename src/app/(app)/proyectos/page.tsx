@@ -8,6 +8,10 @@ const jetBrainsFont = JetBrains_Mono({ subsets: ['latin'], display: 'swap' });
 interface Project {
   projectTitle: string;
   projectDescription: string;
+  projectImage?: {
+    url: string;
+    alt: string;
+  };
 }
 
 export default function ProyectosPage() {
@@ -49,9 +53,9 @@ export default function ProyectosPage() {
           style={{ background: 'rgba(102, 0, 255, 0.85)', filter: 'blur(60px)' }}
         ></div>
         <img 
-          src="/Proyectos.png" 
+          src="/proyecto.svg" 
           alt="Proyectos Title" 
-          className="w-full max-w-[300px] md:max-w-[450px] lg:max-w-[550px]"
+          className="w-full max-w-[300px] md:max-w-[500px] lg:max-w-[650px] relative z-[3]"
           onError={(e) => {
             e.currentTarget.style.display = 'none';
             const fallback = document.getElementById('title-fallback');
@@ -74,13 +78,23 @@ export default function ProyectosPage() {
               key={idx}
               className={`flex flex-col ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} w-full max-w-[850px] rounded-[24px] border border-white/20 bg-[#0a001a]/80 overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.6)] backdrop-blur-sm transition-transform duration-300 hover:scale-[1.02]`}
             >
-              {/* Imagen Placeholder */}
-              <div className="w-full lg:w-[40%] bg-[#3f3f3f] flex items-center justify-center p-12 min-h-[250px] lg:min-h-full shrink-0">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                  <polyline points="21 15 16 10 5 21"></polyline>
-                </svg>
+              {/* Contenido de Imagen */}
+              <div className="w-full lg:w-[40%] bg-[#3f3f3f] flex items-center justify-center min-h-[250px] lg:min-h-full shrink-0">
+                {proj.projectImage?.url ? (
+                  <img 
+                    src={proj.projectImage.url} 
+                    alt={proj.projectImage.alt || proj.projectTitle} 
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="p-12">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                  </div>
+                )}
               </div>
               
               {/* Contenido de Texto */}

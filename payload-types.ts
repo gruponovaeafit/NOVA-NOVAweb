@@ -135,18 +135,7 @@ export interface Evento {
   id: number;
   eventTitle?: string | null;
   eventDescription?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "proyectos".
- */
-export interface Proyecto {
-  id: number;
-  projectTitle?: string | null;
-  projectDescription?: string | null;
-  projectImageUrl?: string | null;
+  eventImage?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -168,6 +157,18 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "proyectos".
+ */
+export interface Proyecto {
+  id: number;
+  projectTitle?: string | null;
+  projectDescription?: string | null;
+  projectImage?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -283,6 +284,7 @@ export interface PayloadMigration {
 export interface EventosSelect<T extends boolean = true> {
   eventTitle?: T;
   eventDescription?: T;
+  eventImage?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -293,7 +295,7 @@ export interface EventosSelect<T extends boolean = true> {
 export interface ProyectosSelect<T extends boolean = true> {
   projectTitle?: T;
   projectDescription?: T;
-  projectImageUrl?: T;
+  projectImage?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -385,6 +387,7 @@ export interface Home {
   id: number;
   heroTitle?: string | null;
   heroSubtitle?: string | null;
+  carouselImages?: (number | Media)[] | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -396,6 +399,7 @@ export interface Nosotro {
   id: number;
   aboutText?: string | null;
   historyText?: string | null;
+  historyImages?: (number | Media)[] | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -406,6 +410,7 @@ export interface Nosotro {
 export interface HomeSelect<T extends boolean = true> {
   heroTitle?: T;
   heroSubtitle?: T;
+  carouselImages?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -417,6 +422,7 @@ export interface HomeSelect<T extends boolean = true> {
 export interface NosotrosSelect<T extends boolean = true> {
   aboutText?: T;
   historyText?: T;
+  historyImages?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -15,9 +15,10 @@ export const Proyectos: CollectionConfig = {
       type: 'textarea',
     },
     {
-      name: 'projectImageUrl',
-      type: 'text',
-      label: 'URL de la imagen' 
+      name: 'projectImage',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
     },
   ],
 }
