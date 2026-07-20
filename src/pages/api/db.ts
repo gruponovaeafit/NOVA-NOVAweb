@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import sql, { config as SqlConfig } from "mssql";
 
-// Renombrar la constante para que no se llame "config"
 export const dbConfig: SqlConfig = {
   user: process.env.DB_USER as string,
   password: process.env.DB_PASS as string,
@@ -14,7 +13,7 @@ export const dbConfig: SqlConfig = {
   },
 };
 
-// Función para conectar a la base de datos
+
 export async function connectToDatabase() {
   try {
     const pool = await sql.connect(dbConfig); // usar dbConfig
