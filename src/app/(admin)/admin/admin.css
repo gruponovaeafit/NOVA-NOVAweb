@@ -1,0 +1,182 @@
+/* Estilos del panel de administración de NOVA */
+.admin-root {
+  min-height: 100vh;
+  background: #0f0f17;
+  color: #e9e9f2;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: 240px;
+  background: #16162a;
+  border-right: 1px solid #2a2a44;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-sidebar h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #a78bfa;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.admin-nav-link {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #c4c4da;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.15s, color 0.15s;
+}
+.admin-nav-link:hover { background: #22223c; color: #fff; }
+.admin-nav-link.active { background: #6d28d9; color: #fff; }
+
+.admin-logout {
+  margin-top: auto;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid #3a3a5c;
+  color: #c4c4da;
+  cursor: pointer;
+  font-size: 14px;
+}
+.admin-logout:hover { background: #2a2a44; color: #fff; }
+
+.admin-main {
+  flex: 1;
+  padding: 32px 40px;
+  overflow-y: auto;
+}
+
+.admin-main h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.admin-subtitle { color: #9a9ab5; margin-bottom: 28px; font-size: 14px; }
+
+/* Cards / listas */
+.admin-card {
+  background: #16162a;
+  border: 1px solid #2a2a44;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* Formularios */
+.admin-field { margin-bottom: 18px; }
+.admin-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #c4c4da;
+}
+.admin-input,
+.admin-textarea {
+  width: 100%;
+  background: #0f0f17;
+  border: 1px solid #3a3a5c;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+}
+.admin-textarea { min-height: 120px; resize: vertical; }
+.admin-input:focus,
+.admin-textarea:focus { outline: none; border-color: #8b5cf6; }
+
+.admin-btn {
+  background: #6d28d9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.admin-btn:hover { background: #7c3aed; }
+.admin-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.admin-btn-secondary {
+  background: transparent;
+  border: 1px solid #3a3a5c;
+  color: #c4c4da;
+}
+.admin-btn-secondary:hover { background: #2a2a44; color: #fff; }
+
+.admin-btn-danger { background: #b91c1c; }
+.admin-btn-danger:hover { background: #dc2626; }
+
+.admin-btn-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* Preview de imagen */
+.admin-thumb {
+  width: 100%;
+  max-width: 220px;
+  border-radius: 8px;
+  border: 1px solid #2a2a44;
+  margin-top: 10px;
+  display: block;
+}
+
+.admin-msg { font-size: 13px; margin-top: 10px; }
+.admin-msg.ok { color: #4ade80; }
+.admin-msg.err { color: #f87171; }
+
+/* Login */
+.admin-login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f0f17;
+}
+.admin-login-box {
+  width: 100%;
+  max-width: 380px;
+  background: #16162a;
+  border: 1px solid #2a2a44;
+  border-radius: 14px;
+  padding: 36px;
+}
+.admin-login-box h1 {
+  color: #a78bfa;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  text-align: center;
+}
+.admin-login-box p { color: #9a9ab5; text-align: center; margin-bottom: 24px; font-size: 14px; }
+
+.admin-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.admin-item-row img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; }
+.admin-item-info { flex: 1; min-width: 0; }
+.admin-item-info strong { display: block; font-size: 15px; }
+.admin-item-info span { color: #9a9ab5; font-size: 13px; }
